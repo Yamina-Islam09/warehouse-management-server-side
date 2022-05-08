@@ -18,6 +18,15 @@ async function run() {
     try {
         await client.connect();
         const itemCollection = client.db('mobileStore').collection('item');
+         // items API
+         app.get('/item', async (req, res) => {
+            const query = {};
+            const cursor = itemCollection.find(query);
+            const items = await cursor.toArray();
+            res.send(items);
+        })
+        
+
     }
     finally {
 
